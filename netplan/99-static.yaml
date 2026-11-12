@@ -1,0 +1,10 @@
+# Part 1 (manual): written by hand on the target at /etc/netplan/99-static.yaml
+# then: sudo chmod 600 /etc/netplan/99-static.yaml && sudo netplan apply
+network:
+  version: 2
+  ethernets:
+    enp0s8:
+      dhcp4: false
+      addresses: [192.168.56.50/24]
+      nameservers:
+        addresses: [8.8.8.8]

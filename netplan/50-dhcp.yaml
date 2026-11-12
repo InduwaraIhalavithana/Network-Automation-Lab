@@ -1,0 +1,9 @@
+# Replaces the installer's config on a cloned VM (it still named the original VM's network cards).
+# Both adapters get their address from DHCP until 99-static.yaml overrides enp0s8.
+network:
+  version: 2
+  ethernets:
+    enp0s3:
+      dhcp4: true
+    enp0s8:
+      dhcp4: true

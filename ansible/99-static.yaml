@@ -1,0 +1,9 @@
+# Settings Ansible sends to the target: keeps .50 (so the SSH session survives) and adds .60.
+network:
+  version: 2
+  ethernets:
+    enp0s8:
+      dhcp4: false
+      addresses: [192.168.56.50/24, 192.168.56.60/24]
+      nameservers:
+        addresses: [1.1.1.1, 9.9.9.9]

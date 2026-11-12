@@ -1,0 +1,14 @@
+# Pushes a new Netplan config to every host in [servers] and applies it.
+# Run from the control node:  ansible-playbook -i inventory.ini playbook.yml -K
+- name: Configure network automatically
+  hosts: servers
+  become: true
+  tasks:
+    - name: Push Netplan config
+      copy:
+        src: 99-static.yaml
+        dest: /etc/netplan/99-static.yaml
+        mode: "0600"
+
+    - name: Apply config
+      command: netplan apply

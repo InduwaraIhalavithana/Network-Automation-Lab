@@ -1,0 +1,8 @@
+# Internet on the NAT adapter after an offline install (Adapter 1 was unplugged during setup).
+network:
+  version: 2
+  ethernets:
+    enp0s3:
+      dhcp4: true
+      nameservers:
+        addresses: [8.8.8.8, 1.1.1.1]
