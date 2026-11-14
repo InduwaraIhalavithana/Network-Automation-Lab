@@ -2,9 +2,9 @@
 
 Configuring a server's network **by hand with Netplan**, then doing the same job **automatically with Ansible**, from a second machine and without logging in to the server.
 
-[![Demo video: manual vs automated network setup](media/thumbnail.png)](media/demo.mp4)
+[![Demo video: manual vs automated network setup](media/thumbnail.png)](https://lnkd.in/p/gkB9Xt8K)
 
-*Click the image to watch the 2-minute demo (no sound; captions explain each step).*
+*Click the image to watch the 2-minute demo on LinkedIn (captions explain each step), or [download the video](media/demo.mp4?raw=1).*
 
 Built for **CST 436-2 System Administration and Maintenance**, BSc (Hons) Computer Science & Technology, Uva Wellassa University of Sri Lanka.
 
@@ -40,7 +40,7 @@ The `target` VM is a full clone of `control` with new MAC addresses, a new hostn
 | `netplan/50-dhcp.yaml` | Clean DHCP config for the cloned VM (see Troubleshooting) |
 | `netplan/60-internet.yaml` | Internet on the NAT adapter after an offline install |
 | `ansible/inventory.ini` | Which machine Ansible manages, and as which user |
-| `ansible/playbook.yml` | Copies the new Netplan file to the target and applies it |
+| `ansible/playbook.yml` | Copies the new Netplan file to the target and applies it (only when the file changed) |
 | `ansible/99-static.yaml` | The settings the playbook pushes: `.50` + `.60` and new DNS |
 | `media/` | Demo video and thumbnail |
 
@@ -95,6 +95,10 @@ sudo rm /etc/netplan/99-static.yaml && sudo reboot   # back to DHCP (.103)
 - Order of Netplan files matters: `99-` overrides `50-`, so the static file wins.
 - Plan changes so the connection you depend on survives them (add an IP before removing one).
 - Cloning a VM copies more than files: MAC-based configs, hostnames and machine IDs all need attention.
+
+## License
+
+[MIT](LICENSE)
 
 ## Author
 

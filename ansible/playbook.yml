@@ -5,10 +5,16 @@
   become: true
   tasks:
     - name: Push Netplan config
-      copy:
+      ansible.builtin.copy:
         src: 99-static.yaml
         dest: /etc/netplan/99-static.yaml
+        owner: root
+        group: root
         mode: "0600"
+      notify: Apply config
 
+  # Runs only when the file above actually changed, so a second run reports changed=0.
+  handlers:
     - name: Apply config
-      command: netplan apply
+      ansible.builtin.command: netplan apply
+      changed_when: true
